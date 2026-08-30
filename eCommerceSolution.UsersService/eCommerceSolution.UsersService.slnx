@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="D:/Microservices/eCommerceSolution.UsersService/Core/eCommerce.Core.csproj" />
+  <Project Path="D:/Microservices/eCommerceSolution.UsersService/eCommerce.API/eCommerce.API.csproj" />
+  <Project Path="D:/Microservices/eCommerceSolution.UsersService/eCommerce.Infrastructure/eCommerce.Infrastructure.csproj" />
+</Solution>
