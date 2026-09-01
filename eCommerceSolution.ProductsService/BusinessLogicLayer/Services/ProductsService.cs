@@ -1,6 +1,8 @@
+using System.Linq.Expressions;
 using BusinessLogicLayer.DTO;
 using BusinessLogicLayer.Mappers;
 using BusinessLogicLayer.ServiceContracts;
+using DataAccessLayer.Entities;
 using DataAccessLayer.RepositoryContracts;
 
 namespace BusinessLogicLayer.Services;
@@ -13,9 +15,15 @@ public class ProductsService(IProductsRepository repository) : IProductsService
         return products.Select(p => p.ToResponse()).ToList()!;
     }
 
-    public async Task<ProductResponse?> GetProductById(Guid productID)
+    public async Task<List<ProductResponse?>> GetProductsByCondition(Expression<Func<Product, bool>> conditionExpression)
     {
-        var product = await repository.GetProductByCondition(p => p.ProductID == productID);
+        var products = await repository.GetProductsByCondition(conditionExpression);
+        return products.Select(p => p!.ToResponse()).ToList()!;
+    }
+
+    public async Task<ProductResponse?> GetProductByCondition(Expression<Func<Product, bool>> conditionExpression)
+    {
+        var product = await repository.GetProductByCondition(conditionExpression);
         return product?.ToResponse();
     }
 

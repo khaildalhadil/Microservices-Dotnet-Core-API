@@ -1,5 +1,6 @@
 using BusinessLogicLayer.DTO;
 using BusinessLogicLayer.ServiceContracts;
+using DataAccessLayer.Entities;
 using FluentValidation;
 
 namespace ProductsMicroService.API.APIEndpoints;
@@ -18,7 +19,7 @@ public static class ProductAPIEndpoints
 
         group.MapGet("/{productID:guid}", async (Guid productID, IProductsService productsService) =>
         {
-            var product = await productsService.GetProductById(productID);
+            var product = await productsService.GetProductByCondition(p => p.ProductID == productID);
             return product is null ? Results.NotFound() : Results.Ok(product);
         });
 
