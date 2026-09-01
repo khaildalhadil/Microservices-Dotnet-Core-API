@@ -15,7 +15,7 @@ public static class DependencyInjection
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            options.UseMySQL(connectionString!));
 
         services.AddScoped<IProductsRepository, ProductsRepository>();
 
