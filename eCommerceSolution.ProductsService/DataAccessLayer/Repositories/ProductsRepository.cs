@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using DataAccessLayer.Context;
 using DataAccessLayer.Entities;
 using DataAccessLayer.RepositoryContracts;
@@ -12,9 +13,14 @@ public class ProductsRepository(ApplicationDbContext dbContext) : IProductsRepos
         return await dbContext.Products.ToListAsync();
     }
 
-    public async Task<Product?> GetProductByCondition(Func<Product, bool> conditionExpression)
+    public async Task<IEnumerable<Product?>> GetProductsByCondition(Expression<Func<Product, bool>> conditionExpression)
     {
-        return await Task.FromResult(dbContext.Products.FirstOrDefault(conditionExpression));
+        return await dbContext.Products.Where(conditionExpression).ToListAsync();
+    }
+
+    public async Task<Product?> GetProductByCondition(Expression<Func<Product, bool>> conditionExpression)
+    {
+        return await dbContext.Products.FirstOrDefaultAsync(conditionExpression);
     }
 
     public async Task<Product?> AddProduct(Product product)
