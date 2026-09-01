@@ -27,8 +27,10 @@ namespace eCommerce.API.Middlewares
             {
                 // log
                 _log.LogError($"{ex.GetType().ToString()}: {ex.Message}");
-                throw;
+                httpContext.Response.StatusCode = 500;
+                await httpContext.Response.WriteAsJsonAsync(new { Message = ex.Message, Type = ex.GetType().ToString() });
             }
+
         }
     }
 

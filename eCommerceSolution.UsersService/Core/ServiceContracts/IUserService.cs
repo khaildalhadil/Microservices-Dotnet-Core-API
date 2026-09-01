@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using eCommerce.Core.DTO;
 
-namespace eCommerce.Core.ServiceContracts
+
+namespace eCommerce.Core.ServiceContracts;
+public interface IUserService
 {
-    internal class IUserService
-    {
-    }
+    Task<AuthenticationResponse?> Login(LoginRequest? loginRequest);
+    Task<AuthenticationResponse?> Register(RegisterRequest? registerRequest);
 }

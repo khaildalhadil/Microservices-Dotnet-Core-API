@@ -1,3 +1,4 @@
+using eCommerce.API.Middlewares;
 using eCommerce.Core;
 using eCommerce.Infrastructure;
 
@@ -16,11 +17,25 @@ public class Program
 
         builder.Services.AddControllers();
 
+        // Swagger / OpenAPI. Feed the generated XML doc file so the /// comments show up.
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen(options =>
+        {
+            var xmlPath = Path.Combine(AppContext.BaseDirectory,
+                $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml");
+            if (File.Exists(xmlPath))
+                options.IncludeXmlComments(xmlPath);
+        });
+
         var app = builder.Build();
+
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         // Configure the HTTP request pipeline.
 
         app.UseHttpsRedirection();
+        app.UseExceptionHandlingMiddlewares();
 
         app.UseRouting();
 
