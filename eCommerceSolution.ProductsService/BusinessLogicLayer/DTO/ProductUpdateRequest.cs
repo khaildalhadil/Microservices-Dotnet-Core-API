@@ -1,0 +1,8 @@
+namespace BusinessLogicLayer.DTO;
+
+public record ProductUpdateRequest(
+    Guid ProductID,
+    string? ProductName,
+    string? Category,
+    double? UnitPrice,
+    int? QuantityInStock);
