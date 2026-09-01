@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using eCommerce.Core.Entities;
 
-namespace eCommerce.Core.RepositoryContracts
+namespace eCommerce.Core.RepositoryContracts;
+
+public interface IUserRepository
 {
-    internal class IUserRepository
-    {
-    }
+    Task<ApplicationUser?> AddUser(ApplicationUser user);
+
+    Task<ApplicationUser?> GetUserByEmailAndPassword(string? email, string? password);
 }

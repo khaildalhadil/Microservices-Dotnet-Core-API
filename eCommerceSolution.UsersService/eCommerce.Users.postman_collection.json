@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "eCommerce - Users Service",
+    "description": "Register & Login endpoints. Base URL uses the http launch profile (port 5055).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5055" }
+  ],
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{baseUrl}}/api/auth/register", "host": [ "{{baseUrl}}" ], "path": [ "api", "auth", "register" ] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"khalid@test.com\",\n  \"password\": \"1111\",\n  \"personName\": \"Khalid\",\n  \"gender\": 0\n}"
+        },
+        "description": "gender: 0 = Male, 1 = Female (enum sent as number)."
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "url": { "raw": "{{baseUrl}}/api/auth/login", "host": [ "{{baseUrl}}" ], "path": [ "api", "auth", "login" ] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"khalid@test.com\",\n  \"password\": \"1111\"\n}"
+        }
+      }
+    }
+  ]
+}
