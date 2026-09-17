@@ -12,10 +12,13 @@ public static class DependencyInjection
     public static IServiceCollection AddDataAccessLayer(
         this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var connectionString = configuration.GetConnectionString("DefaultConnection")!;
+
+        string finalConnectionString = connectionString.Replace("$MYSQL_HOST", Environment.GetEnvironmentVariable("MYSQL_HOST") ?? "localhost")
+            .Replace("$MYSQL_PASSWORD", Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "1111");
 
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySQL(connectionString!));
+            options.UseMySQL(finalConnectionString));
 
         services.AddScoped<IProductsRepository, ProductsRepository>();
 
