@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="DataAccessLayer/DataAccessLayer.csproj" />
+  <Project Path="BusinessLogicLayer/BusinessLogicLayer.csproj" />
+  <Project Path="OrdersMicroservice.API/OrdersMicroservice.API.csproj" />
+</Solution>
