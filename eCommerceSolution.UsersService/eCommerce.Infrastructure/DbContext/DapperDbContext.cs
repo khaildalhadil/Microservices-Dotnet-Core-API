@@ -11,7 +11,10 @@ public class DapperDbContext : IDisposable
 
     public DapperDbContext(IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        var connectionStringInit = configuration.GetConnectionString("DefaultConnection")!;
+
+        var connectionString = connectionStringInit.Replace("$NG_HOST", Environment.GetEnvironmentVariable("NG_HOST") ?? "localhost")
+            .Replace("$NG_PASSWORD", Environment.GetEnvironmentVariable("NG_PASSWORD") ?? "1111");
         Connection = new NpgsqlConnection(connectionString);
         Connection.Open();
     }
