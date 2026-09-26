@@ -1,5 +1,5 @@
 -- Products microservice — MySQL (DB-first).
--- Run this in MySQL Workbench to create the database, table, and seed data.
+-- Runs automatically on first MySQL container start (docker-entrypoint-initdb.d).
 -- UnitPrice is DECIMAL(10,3) to hold Omani Rial (3 decimal places / baisa).
 
 CREATE DATABASE IF NOT EXISTS ecommerceproductsdatabase;

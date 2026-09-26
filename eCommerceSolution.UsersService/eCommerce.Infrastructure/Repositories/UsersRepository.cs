@@ -7,7 +7,7 @@ namespace eCommerce.Infrastructure.Repositories;
 
 public class UsersRepository(DapperDbContext dbContext) : IUserRepository
 {
-    // Insert a new user and return the stored row. Column names are lowercase (see Data/schema.sql).
+    // Insert a new user and return the stored row. Column names are lowercase (see postgres-init/schema.sql).
     public async Task<ApplicationUser?> AddUser(ApplicationUser user)
     {
         user.UserID = Guid.NewGuid();
