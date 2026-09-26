@@ -1,4 +1,5 @@
 // Seed data for OrdersDatabase.orders — prices in Omani Rial (OMR, 3 decimals)
+// Runs automatically on first MongoDB container start (docker-entrypoint-initdb.d).
 db = db.getSiblingDB("OrdersDatabase");
 
 var orders = [
@@ -53,7 +54,7 @@ var orders = [
     TotalBill: 415.800,
     OrderItems: [
       { _id: "b1000000-0005-4000-8000-000000000001", ProductID: "9e7e7085-6f4e-4921-8f15-c59f084080f9", UnitPrice: 269.500, Quantity: 1, TotalPrice: 269.500 }, // Dining Table
-      { _id: "b1000000-0005-4000-8000-000000ي000002", ProductID: "4c9b6f71-6c5d-485f-8db2-58011a236b63", UnitPrice: 69.300, Quantity: 1, TotalPrice: 69.300 },   // Coffee Table
+      { _id: "b1000000-0005-4000-8000-000000000002", ProductID: "4c9b6f71-6c5d-485f-8db2-58011a236b63", UnitPrice: 69.300, Quantity: 1, TotalPrice: 69.300 },   // Coffee Table
       { _id: "b1000000-0005-4000-8000-000000000003", ProductID: "12b369b7-9101-41b1-a653-6c6c9a4fe1e4", UnitPrice: 38.500, Quantity: 2, TotalPrice: 77.000 }    // Smart Blender
     ]
   }
