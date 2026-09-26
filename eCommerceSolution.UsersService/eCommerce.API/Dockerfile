@@ -13,6 +13,8 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["eCommerce.API/eCommerce.API.csproj", "eCommerce.API/"]
+COPY ["Core/eCommerce.Core.csproj", "Core/"]
+COPY ["eCommerce.Infrastructure/eCommerce.Infrastructure.csproj", "eCommerce.Infrastructure/"]
 RUN dotnet restore "./eCommerce.API/eCommerce.API.csproj"
 COPY . .
 WORKDIR "/src/eCommerce.API"
