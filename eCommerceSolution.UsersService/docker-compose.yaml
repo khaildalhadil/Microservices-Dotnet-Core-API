@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1111
+      POSTGRES_DB: ecommerceusers
+    ports:
+      - "5433:5432" # 5432 on the host is taken by local Postgres
+    volumes:
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - users-microservice-network
+    hostname: postgres-host-usersmicroservice
+
+  users-microservice:
+    image: khalidalhadi/ecommerce-user-microservice:v1.0
+    build:
+      context: .
+      dockerfile: eCommerce.API/Dockerfile
+    environment:
+      NG_HOST: postgres-host-usersmicroservice
+      NG_PASSWORD: 1111
+    ports:
+      - "9090:9090"
+    networks:
+      - users-microservice-network
+    depends_on:
+      - postgres
+
+networks:
+  users-microservice-network:
+    driver: bridge
