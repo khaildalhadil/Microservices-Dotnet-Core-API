@@ -34,4 +34,17 @@ public class UsersRepository(DapperDbContext dbContext) : IUserRepository
         return await dbContext.Connection.QueryFirstOrDefaultAsync<ApplicationUser>(
             sql, new { Email = email, Password = password });
     }
+
+    // Look up a user by id. Returns null when the user doesn't exist.
+    public async Task<ApplicationUser?> GetUserByUserID(Guid userID)
+    {
+        const string sql = """
+            SELECT userid, email, password, personname, gender
+            FROM users
+            WHERE userid = @UserID
+            """;
+
+        return await dbContext.Connection.QueryFirstOrDefaultAsync<ApplicationUser>(
+            sql, new { UserID = userID });
+    }
 }

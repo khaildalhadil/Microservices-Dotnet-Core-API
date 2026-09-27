@@ -24,4 +24,11 @@ public class UserService(IUserRepository repository) : IUserService
 
         return newUser?.ToAuthenticationResponse("token_token");
     }
+
+    public async Task<UserDTO?> GetUserByUserID(Guid userID)
+    {
+        var user = await repository.GetUserByUserID(userID);
+
+        return user?.ToUserDTO();
+    }
 }

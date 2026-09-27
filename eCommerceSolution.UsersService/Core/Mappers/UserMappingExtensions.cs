@@ -19,4 +19,8 @@ public static class UserMappingExtensions
     // ApplicationUser (entity) -> AuthenticationResponse (outgoing DTO)
     public static AuthenticationResponse ToAuthenticationResponse(this ApplicationUser user, string token) =>
         new(user.UserID, user.Email, user.PersonName, user.Gender, token, Success: true);
+
+    // ApplicationUser (entity) -> UserDTO (outgoing DTO, no password)
+    public static UserDTO ToUserDTO(this ApplicationUser user) =>
+        new(user.UserID, user.Email, user.PersonName, user.Gender);
 }

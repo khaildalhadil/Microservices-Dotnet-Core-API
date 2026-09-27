@@ -13,8 +13,11 @@ public class DapperDbContext : IDisposable
     {
         var connectionStringInit = configuration.GetConnectionString("DefaultConnection")!;
 
-        var connectionString = connectionStringInit.Replace("$NG_HOST", Environment.GetEnvironmentVariable("NG_HOST") ?? "localhost")
-            .Replace("$NG_PASSWORD", Environment.GetEnvironmentVariable("NG_PASSWORD") ?? "1111");
+        var connectionString = connectionStringInit
+            .Replace("$NG_HOST", Environment.GetEnvironmentVariable("NG_HOST") ?? "localhost")
+            .Replace("$NG_PASSWORD", Environment.GetEnvironmentVariable("NG_PASSWORD") ?? "1111")
+            .Replace("$NG_DATABASE", Environment.GetEnvironmentVariable("NG_DATABASE") ?? "ecommerce")
+            .Replace("$NG_USERNAME", Environment.GetEnvironmentVariable("NG_USERNAME") ?? "postgres");
         Connection = new NpgsqlConnection(connectionString);
         Connection.Open();
     }
