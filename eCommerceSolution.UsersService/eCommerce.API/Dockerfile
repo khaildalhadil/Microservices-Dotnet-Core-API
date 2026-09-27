@@ -31,6 +31,5 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 ENV ASPNETCORE_ENVIRONMENT=Production
-ENV
 
 ENTRYPOINT ["dotnet", "eCommerce.API.dll"]

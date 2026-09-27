@@ -51,6 +51,7 @@ services:
     environment:
       NG_HOST: postgres-host-usersmicroservice
       NG_PASSWORD: 1111
+      NG_DATABASE: ecommerceusers
     ports:
       - "9090:9090"
     networks:
